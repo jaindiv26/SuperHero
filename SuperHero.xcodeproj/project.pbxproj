@@ -13,6 +13,10 @@
 		FC3FD5EF233DF2CC00B43F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD5ED233DF2CC00B43F6B /* Main.storyboard */; };
 		FC3FD5F1233DF2D200B43F6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD5F0233DF2D200B43F6B /* Assets.xcassets */; };
 		FC3FD5F4233DF2D200B43F6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD5F2233DF2D200B43F6B /* LaunchScreen.storyboard */; };
+		FC3FD5FC233E206000B43F6B /* SuperHeroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD5FB233E206000B43F6B /* SuperHeroViewModel.swift */; };
+		FC3FD5FE233E20C300B43F6B /* SuperHeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD5FD233E20C300B43F6B /* SuperHeroModel.swift */; };
+		FC3FD600233E2C6100B43F6B /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD5FF233E2C6100B43F6B /* CharacterCell.swift */; };
+		FC3FD602233E317C00B43F6B /* CharacterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD601233E317C00B43F6B /* CharacterInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		FC3FD5F0233DF2D200B43F6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC3FD5F3233DF2D200B43F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC3FD5F5233DF2D200B43F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC3FD5FB233E206000B43F6B /* SuperHeroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroViewModel.swift; sourceTree = "<group>"; };
+		FC3FD5FD233E20C300B43F6B /* SuperHeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroModel.swift; sourceTree = "<group>"; };
+		FC3FD5FF233E2C6100B43F6B /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		FC3FD601233E317C00B43F6B /* CharacterInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				FC3FD5F0233DF2D200B43F6B /* Assets.xcassets */,
 				FC3FD5F2233DF2D200B43F6B /* LaunchScreen.storyboard */,
 				FC3FD5F5233DF2D200B43F6B /* Info.plist */,
+				FC3FD5FB233E206000B43F6B /* SuperHeroViewModel.swift */,
+				FC3FD5FD233E20C300B43F6B /* SuperHeroModel.swift */,
+				FC3FD5FF233E2C6100B43F6B /* CharacterCell.swift */,
+				FC3FD601233E317C00B43F6B /* CharacterInfoViewController.swift */,
 			);
 			path = SuperHero;
 			sourceTree = "<group>";
@@ -138,8 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC3FD602233E317C00B43F6B /* CharacterInfoViewController.swift in Sources */,
+				FC3FD5FC233E206000B43F6B /* SuperHeroViewModel.swift in Sources */,
 				FC3FD5EC233DF2CC00B43F6B /* ViewController.swift in Sources */,
 				FC3FD5E8233DF2CC00B43F6B /* AppDelegate.swift in Sources */,
+				FC3FD600233E2C6100B43F6B /* CharacterCell.swift in Sources */,
+				FC3FD5FE233E20C300B43F6B /* SuperHeroModel.swift in Sources */,
 				FC3FD5EA233DF2CC00B43F6B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
