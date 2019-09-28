@@ -25,11 +25,18 @@ class ViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let label = UILabel.init(frame: CGRect.zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        label.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = .black
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.text = "Welcome to the Superhero Lair"
+        
         flowLayout.scrollDirection = .vertical
-        //        let screenSize: CGRect = UIScreen.main.bounds
-        //        let screenWidth = screenSize.width
-        //        flowLayout.estimatedItemSize = CGSize(width: (screenWidth/2)-6, height: (screenWidth/2)-6)
-        //        flowLayout.itemSize = CGSize(width: (screenWidth/2)-6, height: (screenWidth/2)-6)
         flowLayout.minimumInteritemSpacing = 10
         collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +45,7 @@ class ViewController:
         view.addSubview(collectionView)
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 35).isActive = true
+        collectionView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 30).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = .white
@@ -56,7 +63,7 @@ class ViewController:
         let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
         
-        return CGSize(width: (screenWidth/2)-6, height: (screenWidth/2)-6)
+        return CGSize(width: (screenWidth/2)-6, height: screenWidth * 3 / 4)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -65,14 +72,11 @@ class ViewController:
         return cell
     }
     
-    func getItems(characterInfo: SuperHeroModel) {
-        self.superHeroList.append(characterInfo)
-        self.count += 1
+    func getItems(list: [SuperHeroModel]) {
+        self.superHeroList.removeAll()
+        self.superHeroList = list
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-            if (self.count <= 731) {
-              self.viewModel?.loadItems(count: self.count)
-            }
         }
     }
 }

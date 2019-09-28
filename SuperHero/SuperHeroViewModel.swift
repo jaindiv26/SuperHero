@@ -9,7 +9,7 @@
 import Foundation
 
 protocol SuperHeroViewModelDelegate {
-    func getItems(characterInfo: SuperHeroModel)
+    func getItems(list: [SuperHeroModel])
 }
 
 class SuperHeroViewModel {
@@ -20,10 +20,8 @@ class SuperHeroViewModel {
         self.delegate = delegate
     }
     
-    var model: [SuperHeroModel] = []
-    
     public func loadItems (count: Int) {
-        let baseUrl : String = "https://superheroapi.com/api/506782146534313/" + String(count)
+        let baseUrl : String = "https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api/all.json"
         
         let defaultSession = URLSession(configuration: .default)
         var dataTask: URLSessionDataTask?
@@ -46,25 +44,33 @@ class SuperHeroViewModel {
                         let jsonResponse = try JSONSerialization.jsonObject(with:
                             dataResponse, options: [])
                         
-                        guard let jsonObject = jsonResponse as? NSDictionary else {
+                        guard let jsonObject = jsonResponse as? [[String: Any]] else {
                             return
                         }
                         
-                        let charBiography = jsonObject.value(forKey: "biography") as! NSDictionary
-                        let charAppearance = jsonObject.value(forKey: "appearance") as! NSDictionary
-                        let charWork = jsonObject.value(forKey: "work") as! NSDictionary
-                        let charImage = jsonObject.value(forKey: "image") as! NSDictionary
+                        var model: [SuperHeroModel] = []
                         
-                        let superHeroModel = SuperHeroModel.init(
-                            charID: jsonObject.value(forKey: "id") as! String,
-                            charName: jsonObject.value(forKey: "name") as! String,
-                            charPlaceOfBirth: charBiography.value(forKey: "place-of-birth") as! String,
-                            charGender: charAppearance.value(forKey: "gender") as! String,
-                            charOccupation: charWork.value(forKey: "occupation") as! String,
-                            charImage: charImage.value(forKey: "url") as! String
-                        )
+                        for i in jsonObject {
+                            let charBiography = i["biography"] as! NSDictionary
+                            let charAppearance = i["appearance"] as! NSDictionary
+                            let charWork = i["work"] as! NSDictionary
+                            let charImage = i["images"] as! NSDictionary
+
+                            let superHeroModel = SuperHeroModel.init(
+                                charID: i["id"] as! Int,
+                                charName: i["name"] as! String,
+                                charPlaceOfBirth: charBiography["placeOfBirth"] as! String,
+                                charGender: charAppearance["gender"] as! String,
+                                charOccupation: charWork["occupation"] as! String,
+                                charImage: charImage["lg"] as! String
+                            )
+                            
+                            model.append(superHeroModel)
+                        }
                         
-                        self?.delegate?.getItems(characterInfo: superHeroModel)
+
+
+                        self?.delegate?.getItems(list: model)
                         
                     } catch let parsingError {
                         print("Error in parsing data", parsingError)

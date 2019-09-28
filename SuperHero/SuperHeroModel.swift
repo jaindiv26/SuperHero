@@ -10,14 +10,14 @@ import Foundation
 
 class SuperHeroModel {
     
-    var charID: String = ""
+    var charID: Int = 0
     var charName: String = ""
     var charPlaceOfBirth: String = ""
     var charGender: String = ""
     var charOccupation: String = ""
     var charImage: String = ""
     
-    init(charID: String,
+    init(charID: Int,
          charName: String,
          charPlaceOfBirth: String,
          charGender: String,
