@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,6 @@
 		FC3FD5E8233DF2CC00B43F6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD5E7233DF2CC00B43F6B /* AppDelegate.swift */; };
 		FC3FD5EA233DF2CC00B43F6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD5E9233DF2CC00B43F6B /* SceneDelegate.swift */; };
 		FC3FD5EC233DF2CC00B43F6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD5EB233DF2CC00B43F6B /* ViewController.swift */; };
-		FC3FD5EF233DF2CC00B43F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD5ED233DF2CC00B43F6B /* Main.storyboard */; };
 		FC3FD5F1233DF2D200B43F6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD5F0233DF2D200B43F6B /* Assets.xcassets */; };
 		FC3FD5F4233DF2D200B43F6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD5F2233DF2D200B43F6B /* LaunchScreen.storyboard */; };
 		FC3FD5FC233E206000B43F6B /* SuperHeroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD5FB233E206000B43F6B /* SuperHeroViewModel.swift */; };
@@ -28,7 +27,6 @@
 		FC3FD5E7233DF2CC00B43F6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC3FD5E9233DF2CC00B43F6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FC3FD5EB233DF2CC00B43F6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FC3FD5EE233DF2CC00B43F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC3FD5F0233DF2D200B43F6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC3FD5F3233DF2D200B43F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC3FD5F5233DF2D200B43F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,7 +54,6 @@
 				54B928E365113F468627CE67 /* Pods-SuperHero.debug.xcconfig */,
 				7C190EF1454AE54868435139 /* Pods-SuperHero.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -89,19 +86,50 @@
 		FC3FD5E6233DF2CC00B43F6B /* SuperHero */ = {
 			isa = PBXGroup;
 			children = (
+				FCE25E54233FD86E009FB0D9 /* ViewModel */,
+				FCE25E53233FD85D009FB0D9 /* Cell */,
+				FCE25E52233FD857009FB0D9 /* Model */,
+				FCE25E51233FD838009FB0D9 /* ViewController */,
 				FC3FD5E7233DF2CC00B43F6B /* AppDelegate.swift */,
 				FC3FD5E9233DF2CC00B43F6B /* SceneDelegate.swift */,
-				FC3FD5EB233DF2CC00B43F6B /* ViewController.swift */,
-				FC3FD5ED233DF2CC00B43F6B /* Main.storyboard */,
 				FC3FD5F0233DF2D200B43F6B /* Assets.xcassets */,
 				FC3FD5F2233DF2D200B43F6B /* LaunchScreen.storyboard */,
 				FC3FD5F5233DF2D200B43F6B /* Info.plist */,
-				FC3FD5FB233E206000B43F6B /* SuperHeroViewModel.swift */,
-				FC3FD5FD233E20C300B43F6B /* SuperHeroModel.swift */,
-				FC3FD5FF233E2C6100B43F6B /* CharacterCell.swift */,
-				FC3FD601233E317C00B43F6B /* CharacterInfoViewController.swift */,
 			);
 			path = SuperHero;
+			sourceTree = "<group>";
+		};
+		FCE25E51233FD838009FB0D9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FC3FD601233E317C00B43F6B /* CharacterInfoViewController.swift */,
+				FC3FD5EB233DF2CC00B43F6B /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FCE25E52233FD857009FB0D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FC3FD5FD233E20C300B43F6B /* SuperHeroModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FCE25E53233FD85D009FB0D9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FC3FD5FF233E2C6100B43F6B /* CharacterCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FCE25E54233FD86E009FB0D9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FC3FD5FB233E206000B43F6B /* SuperHeroViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +194,6 @@
 			files = (
 				FC3FD5F4233DF2D200B43F6B /* LaunchScreen.storyboard in Resources */,
 				FC3FD5F1233DF2D200B43F6B /* Assets.xcassets in Resources */,
-				FC3FD5EF233DF2CC00B43F6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,14 +259,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FC3FD5ED233DF2CC00B43F6B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC3FD5EE233DF2CC00B43F6B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FC3FD5F2233DF2D200B43F6B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

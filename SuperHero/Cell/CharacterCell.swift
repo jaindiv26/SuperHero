@@ -48,7 +48,7 @@ class CharacterCell: UICollectionViewCell {
     }
     
     func addData(character: SuperHeroModel) {
-        charPic.sd_setImage(with: URL(string: character.charImage), placeholderImage: UIImage(named: "sample"))
+        charPic.sd_setImage(with: URL(string: character.charImage!), placeholderImage: UIImage(named: "sample"))
         label.text = character.charName
     }
 }

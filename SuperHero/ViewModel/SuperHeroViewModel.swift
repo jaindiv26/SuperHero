@@ -55,21 +55,28 @@ class SuperHeroViewModel {
                             let charAppearance = i["appearance"] as! NSDictionary
                             let charWork = i["work"] as! NSDictionary
                             let charImage = i["images"] as! NSDictionary
-
+                            let charPowerstat = i["powerstats"] as! NSDictionary
                             let superHeroModel = SuperHeroModel.init(
                                 charID: i["id"] as! Int,
-                                charName: i["name"] as! String,
-                                charPlaceOfBirth: charBiography["placeOfBirth"] as! String,
-                                charGender: charAppearance["gender"] as! String,
-                                charOccupation: charWork["occupation"] as! String,
-                                charImage: charImage["lg"] as! String
+                                charName: i["name"] as? String ?? "",
+                                charPlaceOfBirth: charBiography["placeOfBirth"] as? String ?? "",
+                                charGender: charAppearance["gender"] as? String ?? "",
+                                charOccupation: charWork["occupation"] as? String ?? "",
+                                charImage: charImage["lg"] as? String ?? "",
+                                intelligence: charPowerstat["intelligence"] as! Int,
+                                strength: charPowerstat["strength"] as! Int,
+                                speed: charPowerstat["speed"] as! Int,
+                                durability: charPowerstat["durability"] as! Int,
+                                power: charPowerstat["power"] as! Int,
+                                combat: charPowerstat["combat"] as! Int,
+                                fullName: charBiography["fullName"] as? String ?? "",
+                                firstAppearance: charBiography["firstAppearance"] as? String ?? "",
+                                publisher: charBiography["publisher"] as? String ?? "",
+                                alignment: charBiography["alignment"] as? String ?? ""
                             )
                             
                             model.append(superHeroModel)
                         }
-                        
-
-
                         self?.delegate?.getItems(list: model)
                         
                     } catch let parsingError {

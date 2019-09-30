@@ -24,17 +24,8 @@ class ViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let label = UILabel.init(frame: CGRect.zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        label.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .black
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.text = "Welcome to the Superhero Lair"
+        self.title = "Superhero's Lair"
+        view.backgroundColor = .white
         
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumInteritemSpacing = 10
@@ -45,7 +36,7 @@ class ViewController:
         view.addSubview(collectionView)
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        collectionView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 30).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = .white
@@ -70,6 +61,12 @@ class ViewController:
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CharacterCell
         cell.addData(character: superHeroList[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let nav = UINavigationController.init(rootViewController: CharacterInfoViewController.init(character: superHeroList[indexPath.row]))
+//        nav.setToolbarHidden(false, animated: true)
+        self.navigationController?.pushViewController(CharacterInfoViewController.init(character: superHeroList[indexPath.row]), animated: true)
     }
     
     func getItems(list: [SuperHeroModel]) {
