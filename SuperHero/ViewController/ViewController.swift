@@ -20,15 +20,22 @@ class ViewController:
     var superHeroList: [SuperHeroModel] = []
     let flowLayout = UICollectionViewFlowLayout()
     var collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-    var count = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Superhero's Lair"
+        
         view.backgroundColor = .white
         
+        let cellWidth : CGFloat = view.frame.size.width / 2.0 - 4
+        let cellheight : CGFloat = view.frame.size.height / 3.0
+        let cellSize = CGSize(width: cellWidth , height:cellheight)
+    
+        flowLayout.itemSize = cellSize
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        flowLayout.minimumLineSpacing = 1.0
+        flowLayout.minimumInteritemSpacing = 1.0
         flowLayout.scrollDirection = .vertical
-        flowLayout.minimumInteritemSpacing = 10
         collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
@@ -36,25 +43,17 @@ class ViewController:
         view.addSubview(collectionView)
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = .white
         
         viewModel = SuperHeroViewModel.init(delegate: self)
-        viewModel?.loadItems(count: self.count)
+        viewModel?.loadItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         superHeroList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let screenSize: CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        
-        return CGSize(width: (screenWidth/2)-6, height: screenWidth * 3 / 4)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,8 +63,6 @@ class ViewController:
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let nav = UINavigationController.init(rootViewController: CharacterInfoViewController.init(character: superHeroList[indexPath.row]))
-//        nav.setToolbarHidden(false, animated: true)
         self.navigationController?.pushViewController(CharacterInfoViewController.init(character: superHeroList[indexPath.row]), animated: true)
     }
     

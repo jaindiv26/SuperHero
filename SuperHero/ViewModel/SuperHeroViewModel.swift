@@ -20,7 +20,7 @@ class SuperHeroViewModel {
         self.delegate = delegate
     }
     
-    public func loadItems (count: Int) {
+    public func loadItems () {
         let baseUrl : String = "https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api/all.json"
         
         let defaultSession = URLSession(configuration: .default)

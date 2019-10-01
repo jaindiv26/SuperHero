@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func makeBlurImage(targetImageView:UIImageView?)
+    func makeBlurImage(targetImageView:UIImageView?, density: UIBlurEffect.Style)
     {
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffect = UIBlurEffect(style: density)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = targetImageView!.bounds
         
@@ -57,6 +57,7 @@ class CharacterInfoViewController: UIViewController {
         scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.contentSize = scrollView.frame.size
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(self.contentView)
@@ -65,15 +66,12 @@ class CharacterInfoViewController: UIViewController {
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         
-        
         blurImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(blurImage)
         blurImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
         blurImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
         blurImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-        blurImage.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        blurImage.contentMode = .scaleToFill
-        blurImage.clipsToBounds = true
+        blurImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 2/4).isActive = true
         
         charImage.translatesAutoresizingMaskIntoConstraints = false
         blurImage.addSubview(charImage)
@@ -300,7 +298,7 @@ class CharacterInfoViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         blurImage.sd_setImage(with: URL(string: character.charImage!), placeholderImage: UIImage(named: "sample"))
-        blurImage.makeBlurImage(targetImageView: blurImage)
+        blurImage.makeBlurImage(targetImageView: blurImage, density: UIBlurEffect.Style.dark)
         charImage.sd_setImage(with: URL(string: character.charImage!), placeholderImage: UIImage(named: "sample"))
         charName.text = character.charName
         

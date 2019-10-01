@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = UINavigationController.init(rootViewController: ViewController())
         nav.setNavigationBarHidden(false, animated: false)
         nav.navigationBar.isTranslucent = true
+        nav.navigationBar.backgroundColor = .clear
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         return true
