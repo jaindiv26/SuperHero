@@ -18,6 +18,8 @@ class CharacterCell: UICollectionViewCell {
     let charLocation = UILabel.init(frame: CGRect.init())
     let charAlignment = UIImageView.init(frame: CGRect.zero)
     
+    var imageHeightConstraint: NSLayoutConstraint?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -27,11 +29,12 @@ class CharacterCell: UICollectionViewCell {
         
         charPic.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(charPic)
-        charPic.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        charPic.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
+        charPic.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
+        charPic.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         charPic.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
         charPic.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
-        charPic.heightAnchor.constraint(equalToConstant: contentView.frame.height - 80).isActive = true
+        imageHeightConstraint = charPic.heightAnchor.constraint(equalToConstant: contentView.frame.width / 0.75)
+        imageHeightConstraint?.isActive = true
         charPic.layer.borderWidth = 0.5
         charPic.layer.masksToBounds = false
         charPic.layer.borderColor = UIColor.black.cgColor
@@ -40,8 +43,8 @@ class CharacterCell: UICollectionViewCell {
         
         charAlignment.translatesAutoresizingMaskIntoConstraints = false
         charPic.addSubview(charAlignment)
-        charAlignment.leadingAnchor.constraint(equalTo: charPic.trailingAnchor, constant: -50).isActive = true
-        charAlignment.topAnchor.constraint(equalTo: charPic.bottomAnchor, constant: -50).isActive = true
+        charAlignment.trailingAnchor.constraint(equalTo: charPic.trailingAnchor, constant: -10).isActive = true
+        charAlignment.bottomAnchor.constraint(equalTo: charPic.bottomAnchor, constant: -10).isActive = true
         charAlignment.widthAnchor.constraint(equalToConstant: 40).isActive = true
         charAlignment.heightAnchor.constraint(equalToConstant: 40).isActive = true
         charAlignment.contentMode = .scaleToFill
@@ -53,18 +56,25 @@ class CharacterCell: UICollectionViewCell {
         charName.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(charName)
         charName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
-        charName.topAnchor.constraint(equalTo: charPic.bottomAnchor, constant: 13).isActive = true
-        charName.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        charName.topAnchor.constraint(equalTo: charPic.bottomAnchor, constant: 12).isActive = true
         charName.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         charName.textColor = .black
         charName.lineBreakMode = .byWordWrapping
-        charName.numberOfLines = 0
+        charName.numberOfLines = 1
         
-        contentView.bottomAnchor.constraint(equalTo: charName.bottomAnchor, constant: 10).isActive = true
+        let spacerView = UIView.init(frame: CGRect.zero)
+        spacerView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(spacerView)
+        spacerView.topAnchor.constraint(equalTo: charName.bottomAnchor, constant: 12).isActive = true
+        spacerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        spacerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
+        spacerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+        spacerView.backgroundColor = .black
     }
     
     func addData(character: SuperHeroModel) {
         charPic.sd_setImage(with: URL(string: character.charImage!), placeholderImage: UIImage(named: "sample"))
+        imageHeightConstraint?.constant = self.frame.width/0.75
         charName.text = character.charName
         
         if character.alignment == "good" {
